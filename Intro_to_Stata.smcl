@@ -1,0 +1,17 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Documents\GitHub\ra-boot-camp-stata\Intro_to_Stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}29 Jun 2018, 10:15:52
+{txt}
+{com}. 
+. /* You can pause logging with "log off", restart with "log on", and 
+> end logging with "log close" /*
+> 
+
+{txt}end of do-file
+
+{com}. cls
+
+. 

@@ -1,0 +1,21 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Documents\GitHub\ra-boot-camp-stata\Intro to Stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}29 Jun 2018, 10:10:42
+{txt}
+{com}. 
+. 
+{txt}end of do-file
+
+{com}. cls
+
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Documents\GitHub\ra-boot-camp-stata\Intro to Stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}29 Jun 2018, 10:10:56
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
