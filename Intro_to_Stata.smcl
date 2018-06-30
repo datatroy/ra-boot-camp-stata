@@ -3,15 +3,1628 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Documents\GitHub\ra-boot-camp-stata\Intro_to_Stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}29 Jun 2018, 10:15:52
+ {txt}opened on:  {res}30 Jun 2018, 10:52:53
 {txt}
 {com}. 
 . /* You can pause logging with "log off", restart with "log on", and 
-> end logging with "log close" /*
-> 
+> end logging with "log close" */
+. 
+. // Import the Pakistan Suicide Attacks file
+. import delimited "D:\Documents\GitHub\ra-boot-camp-stata\PakistanSuicideAttacks Ver 11 (30-November-2017).csv", delimiter(comma) bindquote(strict) clear 
+{res}{text}(26 vars, 496 obs)
 
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. // Watch how fast the Yellow Tripdata file loads
+. save Pakistan_SA.dta, replace
+{txt}file Pakistan_SA.dta saved
+
+{com}. import delimited yellow_tripdata_2017-06.csv, clear
+{res}{text}(17 vars, 9,656,993 obs)
+
+{com}. save Yellow_Tripdata_2017_06.dta, replace
+{txt}(note: file Yellow_Tripdata_2017_06.dta not found)
+file Yellow_Tripdata_2017_06.dta saved
+
+{com}. use Pakistan_SA.dta, clear 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. duplicates list date time latitude longitude
+
+{p 0 4}{txt}Duplicates in terms of {res} date time latitude longitude{p_end}
+
+  {txt}{c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     1    {txt}{c |}    {res} 488    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}     Monday-July-17-2017 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}            {txt}{c |}  {res}  34.015  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 71.5805         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     1    {txt}{c |}    {res} 489    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}     Monday-July-17-2017 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}            {txt}{c |}  {res}  34.015  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 71.5805         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     2    {txt}{c |}    {res} 390    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}   Saturday-June 15-2013 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}      Noon  {txt}{c |}  {res} 30.2095  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 67.0182         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     2    {txt}{c |}    {res} 391    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}   Saturday-June 15-2013 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}      Noon  {txt}{c |}  {res} 30.2095  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 67.0182         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     3    {txt}{c |}    {res} 444    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}     Tuesday-May 26-2015 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}            {txt}{c |}  {res} 24.9918  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 66.9911         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     3    {txt}{c |}    {res} 445    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}     Tuesday-May 26-2015 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}            {txt}{c |}  {res} 24.9918  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 66.9911         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     4    {txt}{c |}    {res}  63    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}Tuesday-September 4-2007 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}7:15:00 AM  {txt}{c |}  {res} 33.6058  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 73.0437         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+  {c TLC}{hline 13}{c TT}{hline 12}{c TRC}
+  {c |}   group:    {c |}    obs:    {c |}
+  {c |}   {res}     4    {txt}{c |}    {res}  64    {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}                     date {c |}
+  {c |} {res}Tuesday-September 4-2007 {txt}{c |}
+  {c LT}{hline 13}{c TT}{hline 12}{c RT}
+  {c |}       time  {c |}  latitude  {c |}
+  {c |} {res}7:15:00 AM  {txt}{c |}  {res} 33.6058  {txt}{c |}
+  {c LT}{hline 13}{c BT}{hline 12}{c RT}
+  {c |}         longit~e         {c |}
+  {c |}         {res} 73.0437         {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. duplicates drop date time latitude longitude, force
+
+{p 0 4}{txt}Duplicates in terms of {res} date time latitude longitude{p_end}
+
+{txt}(4 observations deleted)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace time = "" if time =="N/A"
+{txt}(9 real changes made)
+
+{com}. replace time = "" if time =="NA"
+{txt}(65 real changes made)
+
+{com}. replace targetedsectifany = "Sunni" if targetedsectifany =="sunni"
+{txt}(0 real changes made)
+
+{com}. replace targetedsectifany = "Shiite" if targetedsectifany =="shiite" 
+{txt}(9 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. tabulate targetedsectifany
+
+    {txt}Targeted {c |}
+ Sect if any {c |}      Freq.     Percent        Cum.
+{hline 13}{c +}{hline 35}
+      Ahmedi {c |}{res}          1        0.22        0.22
+{txt}   Christian {c |}{res}          9        1.98        2.20
+{txt}        Jews {c |}{res}          1        0.22        2.42
+{txt}          NA {c |}{res}         10        2.20        4.62
+{txt}        None {c |}{res}        348       76.48       81.10
+{txt}      Shiite {c |}{res}         47       10.33       91.43
+{txt}Shiite/sunni {c |}{res}          1        0.22       91.65
+{txt}       Sunni {c |}{res}         38        8.35      100.00
+{txt}{hline 13}{c +}{hline 35}
+       Total {c |}{res}        455      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace targetedsectifany = "" if targetedsectifany =="NA"
+{txt}(10 real changes made)
+
+{com}. replace targetedsectifany = "Shiite/Sunni" if targetedsectifany =="Shiite/sunni"
+{txt}(1 real change made)
+
+{com}. tabulate targetedsectifany
+
+    {txt}Targeted {c |}
+ Sect if any {c |}      Freq.     Percent        Cum.
+{hline 13}{c +}{hline 35}
+      Ahmedi {c |}{res}          1        0.22        0.22
+{txt}   Christian {c |}{res}          9        2.02        2.25
+{txt}        Jews {c |}{res}          1        0.22        2.47
+{txt}        None {c |}{res}        348       78.20       80.67
+{txt}      Shiite {c |}{res}         47       10.56       91.24
+{txt}Shiite/Sunni {c |}{res}          1        0.22       91.46
+{txt}       Sunni {c |}{res}         38        8.54      100.00
+{txt}{hline 13}{c +}{hline 35}
+       Total {c |}{res}        445      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace city = proper(substr(city, 1, 1)) + substr(city, 2, .)
+{txt}(7 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    ATTOCK {c |}{res}          1        0.20        0.20
+{txt}                   Attock  {c |}{res}          3        0.61        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                  Bhakkar  {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                  Chakwal  {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          7        1.42       11.59
+{txt}                Charsadda  {c |}{res}          2        0.41       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          1        0.20       12.40
+{txt}                 D.G Khan  {c |}{res}          3        0.61       13.01
+{txt}                  D.I Khan {c |}{res}          8        1.63       14.63
+{txt}                 D.I Khan  {c |}{res}          4        0.81       15.45
+{txt}            Dara Adam Khel {c |}{res}          3        0.61       16.06
+{txt}            Dara Adam khel {c |}{res}          3        0.61       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt}Ghallanai, Mohmand Agency  {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         17        3.46       24.80
+{txt}                Islamabad  {c |}{res}          3        0.61       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}             KURRAM AGENCY {c |}{res}          1        0.20       25.81
+{txt}                   Karachi {c |}{res}         21        4.27       30.08
+{txt}                  Karachi  {c |}{res}          7        1.42       31.50
+{txt}                     Karak {c |}{res}          1        0.20       31.71
+{txt}                  Khanewal {c |}{res}          1        0.20       31.91
+{txt}                   Khuzdar {c |}{res}          1        0.20       32.11
+{txt}             Khyber Agency {c |}{res}         14        2.85       34.96
+{txt}            Khyber Agency  {c |}{res}          1        0.20       35.16
+{txt}                     Kohat {c |}{res}         11        2.24       37.40
+{txt}                    Kohat  {c |}{res}          1        0.20       37.60
+{txt}             Kuram Agency  {c |}{res}          5        1.02       38.62
+{txt}                    Lahore {c |}{res}         14        2.85       41.46
+{txt}                   Lahore  {c |}{res}         11        2.24       43.70
+{txt}              Lakki Marwat {c |}{res}          1        0.20       43.90
+{txt}              Lakki marwat {c |}{res}          4        0.81       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                    MULTAN {c |}{res}          1        0.20       46.14
+{txt}                 Malakand  {c |}{res}          3        0.61       46.75
+{txt}                  Mansehra {c |}{res}          1        0.20       46.95
+{txt}                    Mardan {c |}{res}          9        1.83       48.78
+{txt}            Mohmand Agency {c |}{res}          2        0.41       49.19
+{txt}           Mohmand Agency  {c |}{res}          6        1.22       50.41
+{txt}            Mohmand agency {c |}{res}          1        0.20       50.61
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.81
+{txt}                    Multan {c |}{res}          1        0.20       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         13        2.64       54.27
+{txt}          North waziristan {c |}{res}         11        2.24       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         72       14.63       72.56
+{txt}                 Peshawar  {c |}{res}          2        0.41       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         34        6.91       80.49
+{txt}                   Quetta  {c |}{res}          3        0.61       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                  Shangla  {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}          5        1.02       88.01
+{txt}          South waziristan {c |}{res}          6        1.22       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                    Swabi  {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         26        5.28       95.53
+{txt}                     Swat  {c |}{res}          4        0.81       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          7        1.42       98.17
+{txt}                     Tank  {c |}{res}          1        0.20       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    ATTOCK {c |}{res}          1        0.20        0.20
+{txt}                   Attock  {c |}{res}          3        0.61        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                  Bhakkar  {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                  Chakwal  {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          7        1.42       11.59
+{txt}                Charsadda  {c |}{res}          2        0.41       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          1        0.20       12.40
+{txt}                 D.G Khan  {c |}{res}          3        0.61       13.01
+{txt}                  D.I Khan {c |}{res}          8        1.63       14.63
+{txt}                 D.I Khan  {c |}{res}          4        0.81       15.45
+{txt}            Dara Adam Khel {c |}{res}          3        0.61       16.06
+{txt}            Dara Adam khel {c |}{res}          3        0.61       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt}Ghallanai, Mohmand Agency  {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         17        3.46       24.80
+{txt}                Islamabad  {c |}{res}          3        0.61       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}             KURRAM AGENCY {c |}{res}          1        0.20       25.81
+{txt}                   Karachi {c |}{res}         21        4.27       30.08
+{txt}                  Karachi  {c |}{res}          7        1.42       31.50
+{txt}                     Karak {c |}{res}          1        0.20       31.71
+{txt}                  Khanewal {c |}{res}          1        0.20       31.91
+{txt}                   Khuzdar {c |}{res}          1        0.20       32.11
+{txt}             Khyber Agency {c |}{res}         14        2.85       34.96
+{txt}            Khyber Agency  {c |}{res}          1        0.20       35.16
+{txt}                     Kohat {c |}{res}         11        2.24       37.40
+{txt}                    Kohat  {c |}{res}          1        0.20       37.60
+{txt}             Kuram Agency  {c |}{res}          5        1.02       38.62
+{txt}                    Lahore {c |}{res}         14        2.85       41.46
+{txt}                   Lahore  {c |}{res}         11        2.24       43.70
+{txt}              Lakki Marwat {c |}{res}          1        0.20       43.90
+{txt}              Lakki marwat {c |}{res}          4        0.81       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                    MULTAN {c |}{res}          1        0.20       46.14
+{txt}                 Malakand  {c |}{res}          3        0.61       46.75
+{txt}                  Mansehra {c |}{res}          1        0.20       46.95
+{txt}                    Mardan {c |}{res}          9        1.83       48.78
+{txt}            Mohmand Agency {c |}{res}          2        0.41       49.19
+{txt}           Mohmand Agency  {c |}{res}          6        1.22       50.41
+{txt}            Mohmand agency {c |}{res}          1        0.20       50.61
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.81
+{txt}                    Multan {c |}{res}          1        0.20       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         13        2.64       54.27
+{txt}          North waziristan {c |}{res}         11        2.24       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         72       14.63       72.56
+{txt}                 Peshawar  {c |}{res}          2        0.41       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         34        6.91       80.49
+{txt}                   Quetta  {c |}{res}          3        0.61       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                  Shangla  {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}          5        1.02       88.01
+{txt}          South waziristan {c |}{res}          6        1.22       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                    Swabi  {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         26        5.28       95.53
+{txt}                     Swat  {c |}{res}          4        0.81       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          7        1.42       98.17
+{txt}                     Tank  {c |}{res}          1        0.20       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace city = trim(city)
+{txt}(68 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    ATTOCK {c |}{res}          1        0.20        0.20
+{txt}                    Attock {c |}{res}          3        0.61        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                   Bhakkar {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                   Chakwal {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          9        1.83       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          4        0.81       13.01
+{txt}                  D.I Khan {c |}{res}         12        2.44       15.45
+{txt}            Dara Adam Khel {c |}{res}          3        0.61       16.06
+{txt}            Dara Adam khel {c |}{res}          3        0.61       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt} Ghallanai, Mohmand Agency {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         20        4.07       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}             KURRAM AGENCY {c |}{res}          1        0.20       25.81
+{txt}                   Karachi {c |}{res}         28        5.69       31.50
+{txt}                     Karak {c |}{res}          1        0.20       31.71
+{txt}                  Khanewal {c |}{res}          1        0.20       31.91
+{txt}                   Khuzdar {c |}{res}          1        0.20       32.11
+{txt}             Khyber Agency {c |}{res}         15        3.05       35.16
+{txt}                     Kohat {c |}{res}         12        2.44       37.60
+{txt}              Kuram Agency {c |}{res}          5        1.02       38.62
+{txt}                    Lahore {c |}{res}         25        5.08       43.70
+{txt}              Lakki Marwat {c |}{res}          1        0.20       43.90
+{txt}              Lakki marwat {c |}{res}          4        0.81       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                    MULTAN {c |}{res}          1        0.20       46.14
+{txt}                  Malakand {c |}{res}          3        0.61       46.75
+{txt}                  Mansehra {c |}{res}          1        0.20       46.95
+{txt}                    Mardan {c |}{res}          9        1.83       48.78
+{txt}            Mohmand Agency {c |}{res}          8        1.63       50.41
+{txt}            Mohmand agency {c |}{res}          1        0.20       50.61
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.81
+{txt}                    Multan {c |}{res}          1        0.20       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         13        2.64       54.27
+{txt}          North waziristan {c |}{res}         11        2.24       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         74       15.04       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         37        7.52       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                   Shangla {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}          5        1.02       88.01
+{txt}          South waziristan {c |}{res}          6        1.22       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                     Swabi {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         30        6.10       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          8        1.63       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace city = proper(city)
+{txt}(29 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. tabulaye city
+{err}command {bf}tabulaye{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    Attock {c |}{res}          4        0.81        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                   Bhakkar {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                   Chakwal {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          9        1.83       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          4        0.81       13.01
+{txt}                  D.I Khan {c |}{res}         12        2.44       15.45
+{txt}            Dara Adam Khel {c |}{res}          6        1.22       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt} Ghallanai, Mohmand Agency {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         20        4.07       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}                   Karachi {c |}{res}         28        5.69       31.30
+{txt}                     Karak {c |}{res}          1        0.20       31.50
+{txt}                  Khanewal {c |}{res}          1        0.20       31.71
+{txt}                   Khuzdar {c |}{res}          1        0.20       31.91
+{txt}             Khyber Agency {c |}{res}         15        3.05       34.96
+{txt}                     Kohat {c |}{res}         12        2.44       37.40
+{txt}              Kuram Agency {c |}{res}          5        1.02       38.41
+{txt}             Kurram Agency {c |}{res}          1        0.20       38.62
+{txt}                    Lahore {c |}{res}         25        5.08       43.70
+{txt}              Lakki Marwat {c |}{res}          5        1.02       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                  Malakand {c |}{res}          3        0.61       46.54
+{txt}                  Mansehra {c |}{res}          1        0.20       46.75
+{txt}                    Mardan {c |}{res}          9        1.83       48.58
+{txt}            Mohmand Agency {c |}{res}          9        1.83       50.41
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.61
+{txt}                    Multan {c |}{res}          2        0.41       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         24        4.88       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         74       15.04       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         37        7.52       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan Town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                   Shangla {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}         11        2.24       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                     Swabi {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         30        6.10       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          8        1.63       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+
+{com}. cls
+
+. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. use Pakistan_SA.dta, clear 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. duplicates list date time latitude longitude
+
+{p 0 4}{txt}Duplicates in terms of {res} date time latitude longitude{p_end}
+{txt}
+  {c TLC}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c TRC}
+  {c |} {res}group:   obs:                       date         time   latitude   longit~e {txt}{c |}
+  {c LT}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c RT}
+  {c |} {res}     1    488        Monday-July-17-2017                  34.015    71.5805 {txt}{c |}
+  {c |} {res}     1    489        Monday-July-17-2017                  34.015    71.5805 {txt}{c |}
+  {c |} {res}     2    390      Saturday-June 15-2013         Noon    30.2095    67.0182 {txt}{c |}
+  {c |} {res}     2    391      Saturday-June 15-2013         Noon    30.2095    67.0182 {txt}{c |}
+  {c |} {res}     3    444        Tuesday-May 26-2015                 24.9918    66.9911 {txt}{c |}
+  {c LT}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c RT}
+  {c |} {res}     3    445        Tuesday-May 26-2015                 24.9918    66.9911 {txt}{c |}
+  {c |} {res}     4     63   Tuesday-September 4-2007   7:15:00 AM    33.6058    73.0437 {txt}{c |}
+  {c |} {res}     4     64   Tuesday-September 4-2007   7:15:00 AM    33.6058    73.0437 {txt}{c |}
+  {c BLC}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{com}. 
+. // Drop duplicates
+. duplicates drop date time latitude longitude, force
+
+{p 0 4}{txt}Duplicates in terms of {res} date time latitude longitude{p_end}
+
+{txt}(4 observations deleted)
+
+{com}. 
+. // Find and replace "NA" or "N/A" for time, "shiite" or "sunni" for Target Sect
+. replace time = "" if time =="N/A"
+{txt}(9 real changes made)
+
+{com}. replace time = "" if time =="NA"
+{txt}(65 real changes made)
+
+{com}. replace targetedsectifany = "Sunni" if targetedsectifany =="sunni"
+{txt}(0 real changes made)
+
+{com}. replace targetedsectifany = "Shiite" if targetedsectifany =="shiite" 
+{txt}(9 real changes made)
+
+{com}. 
+. // Tabulate targetedsectifany
+. tabulate targetedsectifany
+
+    {txt}Targeted {c |}
+ Sect if any {c |}      Freq.     Percent        Cum.
+{hline 13}{c +}{hline 35}
+      Ahmedi {c |}{res}          1        0.22        0.22
+{txt}   Christian {c |}{res}          9        1.98        2.20
+{txt}        Jews {c |}{res}          1        0.22        2.42
+{txt}          NA {c |}{res}         10        2.20        4.62
+{txt}        None {c |}{res}        348       76.48       81.10
+{txt}      Shiite {c |}{res}         47       10.33       91.43
+{txt}Shiite/sunni {c |}{res}          1        0.22       91.65
+{txt}       Sunni {c |}{res}         38        8.35      100.00
+{txt}{hline 13}{c +}{hline 35}
+       Total {c |}{res}        455      100.00
+{txt}
+{com}. 
+. // Replace the other obvious typos
+. replace targetedsectifany = "" if targetedsectifany =="NA"
+{txt}(10 real changes made)
+
+{com}. replace targetedsectifany = "Shiite/Sunni" if targetedsectifany =="Shiite/sunni"
+{txt}(1 real change made)
+
+{com}. tabulate targetedsectifany
+
+    {txt}Targeted {c |}
+ Sect if any {c |}      Freq.     Percent        Cum.
+{hline 13}{c +}{hline 35}
+      Ahmedi {c |}{res}          1        0.22        0.22
+{txt}   Christian {c |}{res}          9        2.02        2.25
+{txt}        Jews {c |}{res}          1        0.22        2.47
+{txt}        None {c |}{res}        348       78.20       80.67
+{txt}      Shiite {c |}{res}         47       10.56       91.24
+{txt}Shiite/Sunni {c |}{res}          1        0.22       91.46
+{txt}       Sunni {c |}{res}         38        8.54      100.00
+{txt}{hline 13}{c +}{hline 35}
+       Total {c |}{res}        445      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace city = proper(city)
+{txt}(35 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    Attock {c |}{res}          1        0.20        0.20
+{txt}                   Attock  {c |}{res}          3        0.61        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                  Bhakkar  {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                  Chakwal  {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          7        1.42       11.59
+{txt}                Charsadda  {c |}{res}          2        0.41       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          1        0.20       12.40
+{txt}                 D.G Khan  {c |}{res}          3        0.61       13.01
+{txt}                  D.I Khan {c |}{res}          8        1.63       14.63
+{txt}                 D.I Khan  {c |}{res}          4        0.81       15.45
+{txt}            Dara Adam Khel {c |}{res}          6        1.22       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt}Ghallanai, Mohmand Agency  {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         17        3.46       24.80
+{txt}                Islamabad  {c |}{res}          3        0.61       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}                   Karachi {c |}{res}         21        4.27       29.88
+{txt}                  Karachi  {c |}{res}          7        1.42       31.30
+{txt}                     Karak {c |}{res}          1        0.20       31.50
+{txt}                  Khanewal {c |}{res}          1        0.20       31.71
+{txt}                   Khuzdar {c |}{res}          1        0.20       31.91
+{txt}             Khyber Agency {c |}{res}         14        2.85       34.76
+{txt}            Khyber Agency  {c |}{res}          1        0.20       34.96
+{txt}                     Kohat {c |}{res}         11        2.24       37.20
+{txt}                    Kohat  {c |}{res}          1        0.20       37.40
+{txt}             Kuram Agency  {c |}{res}          5        1.02       38.41
+{txt}             Kurram Agency {c |}{res}          1        0.20       38.62
+{txt}                    Lahore {c |}{res}         14        2.85       41.46
+{txt}                   Lahore  {c |}{res}         11        2.24       43.70
+{txt}              Lakki Marwat {c |}{res}          5        1.02       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                 Malakand  {c |}{res}          3        0.61       46.54
+{txt}                  Mansehra {c |}{res}          1        0.20       46.75
+{txt}                    Mardan {c |}{res}          9        1.83       48.58
+{txt}            Mohmand Agency {c |}{res}          3        0.61       49.19
+{txt}           Mohmand Agency  {c |}{res}          6        1.22       50.41
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.61
+{txt}                    Multan {c |}{res}          2        0.41       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         24        4.88       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         72       14.63       72.56
+{txt}                 Peshawar  {c |}{res}          2        0.41       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         34        6.91       80.49
+{txt}                   Quetta  {c |}{res}          3        0.61       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan Town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                  Shangla  {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}         11        2.24       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                    Swabi  {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         26        5.28       95.53
+{txt}                     Swat  {c |}{res}          4        0.81       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          7        1.42       98.17
+{txt}                     Tank  {c |}{res}          1        0.20       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace city = trim(city)
+{txt}(68 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    Attock {c |}{res}          4        0.81        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                   Bhakkar {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                   Chakwal {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          9        1.83       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          4        0.81       13.01
+{txt}                  D.I Khan {c |}{res}         12        2.44       15.45
+{txt}            Dara Adam Khel {c |}{res}          6        1.22       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt} Ghallanai, Mohmand Agency {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         20        4.07       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}                   Karachi {c |}{res}         28        5.69       31.30
+{txt}                     Karak {c |}{res}          1        0.20       31.50
+{txt}                  Khanewal {c |}{res}          1        0.20       31.71
+{txt}                   Khuzdar {c |}{res}          1        0.20       31.91
+{txt}             Khyber Agency {c |}{res}         15        3.05       34.96
+{txt}                     Kohat {c |}{res}         12        2.44       37.40
+{txt}              Kuram Agency {c |}{res}          5        1.02       38.41
+{txt}             Kurram Agency {c |}{res}          1        0.20       38.62
+{txt}                    Lahore {c |}{res}         25        5.08       43.70
+{txt}              Lakki Marwat {c |}{res}          5        1.02       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                  Malakand {c |}{res}          3        0.61       46.54
+{txt}                  Mansehra {c |}{res}          1        0.20       46.75
+{txt}                    Mardan {c |}{res}          9        1.83       48.58
+{txt}            Mohmand Agency {c |}{res}          9        1.83       50.41
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.61
+{txt}                    Multan {c |}{res}          2        0.41       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         24        4.88       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         74       15.04       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         37        7.52       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan Town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                   Shangla {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}         11        2.24       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                     Swabi {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         30        6.10       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          8        1.63       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+{txt}
+{com}. 
 {txt}end of do-file
 
 {com}. cls
 
-. 
+. replace city = proper(city)
+{txt}(0 real changes made)
+
+{com}. destring longitude, replace force float
+{txt}longitude: all characters numeric; {res}replaced {txt}as {res}float
+{txt}(3 missing values generated)
+{res}
+{com}. destring longitude, replace force float
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace force float
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace force float
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace force float
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, generate(longitude2) force float
+{txt}longitude already numeric; no {res}generate
+
+{com}. destring longitude, generate(longitude2) force float
+{txt}longitude already numeric; no {res}generate
+
+{com}. destring longitude, generate(longitude2) force float
+{txt}longitude already numeric; no {res}generate
+
+{com}. destring longitude, generate(longitude2) force float
+{txt}longitude already numeric; no {res}generate
+
+{com}. destring longitude, generate(longitude2) force float
+{txt}longitude already numeric; no {res}generate
+
+{com}. destring longitude, replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring longitude, replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax: contains nonnumeric characters; {res}replaced {txt}as {res}int
+{txt}(32 missing values generated)
+{res}{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. destring injuredmax longitude, replace force float
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. cls
+
+. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. use Pakistan_SA.dta, clear 
+{txt}
+{com}. 
+. // List the deuplicates on date, time, lat and long
+. duplicates list date time latitude longitude
+
+{p 0 4}{txt}Duplicates in terms of {res} date time latitude longitude{p_end}
+{txt}
+  {c TLC}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c TRC}
+  {c |} {res}group:   obs:                       date         time   latitude   longit~e {txt}{c |}
+  {c LT}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c RT}
+  {c |} {res}     1    488        Monday-July-17-2017                  34.015    71.5805 {txt}{c |}
+  {c |} {res}     1    489        Monday-July-17-2017                  34.015    71.5805 {txt}{c |}
+  {c |} {res}     2    390      Saturday-June 15-2013         Noon    30.2095    67.0182 {txt}{c |}
+  {c |} {res}     2    391      Saturday-June 15-2013         Noon    30.2095    67.0182 {txt}{c |}
+  {c |} {res}     3    444        Tuesday-May 26-2015                 24.9918    66.9911 {txt}{c |}
+  {c LT}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c RT}
+  {c |} {res}     3    445        Tuesday-May 26-2015                 24.9918    66.9911 {txt}{c |}
+  {c |} {res}     4     63   Tuesday-September 4-2007   7:15:00 AM    33.6058    73.0437 {txt}{c |}
+  {c |} {res}     4     64   Tuesday-September 4-2007   7:15:00 AM    33.6058    73.0437 {txt}{c |}
+  {c BLC}{hline 8}{c -}{hline 6}{c -}{hline 26}{c -}{hline 12}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{com}. 
+. // Drop duplicates
+. duplicates drop date time latitude longitude, force
+
+{p 0 4}{txt}Duplicates in terms of {res} date time latitude longitude{p_end}
+
+{txt}(4 observations deleted)
+
+{com}. 
+. // Find and replace "NA" or "N/A" for time, "shiite" or "sunni" for Target Sect
+. replace time = "" if time =="N/A"
+{txt}(9 real changes made)
+
+{com}. replace time = "" if time =="NA"
+{txt}(65 real changes made)
+
+{com}. replace targetedsectifany = "Sunni" if targetedsectifany =="sunni"
+{txt}(0 real changes made)
+
+{com}. replace targetedsectifany = "Shiite" if targetedsectifany =="shiite" 
+{txt}(9 real changes made)
+
+{com}. 
+. // Tabulate targetedsectifany
+. tabulate targetedsectifany
+
+    {txt}Targeted {c |}
+ Sect if any {c |}      Freq.     Percent        Cum.
+{hline 13}{c +}{hline 35}
+      Ahmedi {c |}{res}          1        0.22        0.22
+{txt}   Christian {c |}{res}          9        1.98        2.20
+{txt}        Jews {c |}{res}          1        0.22        2.42
+{txt}          NA {c |}{res}         10        2.20        4.62
+{txt}        None {c |}{res}        348       76.48       81.10
+{txt}      Shiite {c |}{res}         47       10.33       91.43
+{txt}Shiite/sunni {c |}{res}          1        0.22       91.65
+{txt}       Sunni {c |}{res}         38        8.35      100.00
+{txt}{hline 13}{c +}{hline 35}
+       Total {c |}{res}        455      100.00
+{txt}
+{com}. 
+. // Replace the other obvious typos
+. replace targetedsectifany = "" if targetedsectifany =="NA"
+{txt}(10 real changes made)
+
+{com}. replace targetedsectifany = "Shiite/Sunni" if targetedsectifany =="Shiite/sunni"
+{txt}(1 real change made)
+
+{com}. tabulate targetedsectifany
+
+    {txt}Targeted {c |}
+ Sect if any {c |}      Freq.     Percent        Cum.
+{hline 13}{c +}{hline 35}
+      Ahmedi {c |}{res}          1        0.22        0.22
+{txt}   Christian {c |}{res}          9        2.02        2.25
+{txt}        Jews {c |}{res}          1        0.22        2.47
+{txt}        None {c |}{res}        348       78.20       80.67
+{txt}      Shiite {c |}{res}         47       10.56       91.24
+{txt}Shiite/Sunni {c |}{res}          1        0.22       91.46
+{txt}       Sunni {c |}{res}         38        8.54      100.00
+{txt}{hline 13}{c +}{hline 35}
+       Total {c |}{res}        445      100.00
+{txt}
+{com}. 
+. // Change city to proper case
+. replace city = proper(city)
+{txt}(35 real changes made)
+
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    Attock {c |}{res}          1        0.20        0.20
+{txt}                   Attock  {c |}{res}          3        0.61        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                  Bhakkar  {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                  Chakwal  {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          7        1.42       11.59
+{txt}                Charsadda  {c |}{res}          2        0.41       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          1        0.20       12.40
+{txt}                 D.G Khan  {c |}{res}          3        0.61       13.01
+{txt}                  D.I Khan {c |}{res}          8        1.63       14.63
+{txt}                 D.I Khan  {c |}{res}          4        0.81       15.45
+{txt}            Dara Adam Khel {c |}{res}          6        1.22       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt}Ghallanai, Mohmand Agency  {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         17        3.46       24.80
+{txt}                Islamabad  {c |}{res}          3        0.61       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}                   Karachi {c |}{res}         21        4.27       29.88
+{txt}                  Karachi  {c |}{res}          7        1.42       31.30
+{txt}                     Karak {c |}{res}          1        0.20       31.50
+{txt}                  Khanewal {c |}{res}          1        0.20       31.71
+{txt}                   Khuzdar {c |}{res}          1        0.20       31.91
+{txt}             Khyber Agency {c |}{res}         14        2.85       34.76
+{txt}            Khyber Agency  {c |}{res}          1        0.20       34.96
+{txt}                     Kohat {c |}{res}         11        2.24       37.20
+{txt}                    Kohat  {c |}{res}          1        0.20       37.40
+{txt}             Kuram Agency  {c |}{res}          5        1.02       38.41
+{txt}             Kurram Agency {c |}{res}          1        0.20       38.62
+{txt}                    Lahore {c |}{res}         14        2.85       41.46
+{txt}                   Lahore  {c |}{res}         11        2.24       43.70
+{txt}              Lakki Marwat {c |}{res}          5        1.02       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                 Malakand  {c |}{res}          3        0.61       46.54
+{txt}                  Mansehra {c |}{res}          1        0.20       46.75
+{txt}                    Mardan {c |}{res}          9        1.83       48.58
+{txt}            Mohmand Agency {c |}{res}          3        0.61       49.19
+{txt}           Mohmand Agency  {c |}{res}          6        1.22       50.41
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.61
+{txt}                    Multan {c |}{res}          2        0.41       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         24        4.88       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         72       14.63       72.56
+{txt}                 Peshawar  {c |}{res}          2        0.41       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         34        6.91       80.49
+{txt}                   Quetta  {c |}{res}          3        0.61       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan Town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                  Shangla  {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}         11        2.24       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                    Swabi  {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         26        5.28       95.53
+{txt}                     Swat  {c |}{res}          4        0.81       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          7        1.42       98.17
+{txt}                     Tank  {c |}{res}          1        0.20       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+{txt}
+{com}. 
+. // Remove leading and trailing balnsk from city
+. replace city = trim(city)
+{txt}(68 real changes made)
+
+{com}. tabulate city
+
+                      {txt}City {c |}      Freq.     Percent        Cum.
+{hline 27}{c +}{hline 35}
+                    Attock {c |}{res}          4        0.81        0.81
+{txt}             Bajaur Agency {c |}{res}         13        2.64        3.46
+{txt}                     Bannu {c |}{res}         24        4.88        8.33
+{txt}                   Bhakkar {c |}{res}          1        0.20        8.54
+{txt}                     Buner {c |}{res}          4        0.81        9.35
+{txt}                   Chakwal {c |}{res}          2        0.41        9.76
+{txt}                    Chaman {c |}{res}          2        0.41       10.16
+{txt}                 Charsadda {c |}{res}          9        1.83       11.99
+{txt}                 D. I Khan {c |}{res}          1        0.20       12.20
+{txt}                  D.G Khan {c |}{res}          4        0.81       13.01
+{txt}                  D.I Khan {c |}{res}         12        2.44       15.45
+{txt}            Dara Adam Khel {c |}{res}          6        1.22       16.67
+{txt}                Fateh Jang {c |}{res}          1        0.20       16.87
+{txt} Ghallanai, Mohmand Agency {c |}{res}          1        0.20       17.07
+{txt}                    Gujrat {c |}{res}          2        0.41       17.48
+{txt}                     Hangu {c |}{res}         17        3.46       20.93
+{txt}                   Haripur {c |}{res}          1        0.20       21.14
+{txt}                 Hayatabad {c |}{res}          1        0.20       21.34
+{txt}                 Islamabad {c |}{res}         20        4.07       25.41
+{txt}                 Jacobabad {c |}{res}          1        0.20       25.61
+{txt}                   Karachi {c |}{res}         28        5.69       31.30
+{txt}                     Karak {c |}{res}          1        0.20       31.50
+{txt}                  Khanewal {c |}{res}          1        0.20       31.71
+{txt}                   Khuzdar {c |}{res}          1        0.20       31.91
+{txt}             Khyber Agency {c |}{res}         15        3.05       34.96
+{txt}                     Kohat {c |}{res}         12        2.44       37.40
+{txt}              Kuram Agency {c |}{res}          5        1.02       38.41
+{txt}             Kurram Agency {c |}{res}          1        0.20       38.62
+{txt}                    Lahore {c |}{res}         25        5.08       43.70
+{txt}              Lakki Marwat {c |}{res}          5        1.02       44.72
+{txt}                   Lasbela {c |}{res}          2        0.41       45.12
+{txt}                 Lower Dir {c |}{res}          4        0.81       45.93
+{txt}                  Malakand {c |}{res}          3        0.61       46.54
+{txt}                  Mansehra {c |}{res}          1        0.20       46.75
+{txt}                    Mardan {c |}{res}          9        1.83       48.58
+{txt}            Mohmand Agency {c |}{res}          9        1.83       50.41
+{txt} Mosal Kor, Mohmand Agency {c |}{res}          1        0.20       50.61
+{txt}                    Multan {c |}{res}          2        0.41       51.02
+{txt}              Muzaffarabad {c |}{res}          3        0.61       51.63
+{txt}          North Waziristan {c |}{res}         24        4.88       56.50
+{txt}                 Nowshehra {c |}{res}          5        1.02       57.52
+{txt}            Orakzai Agency {c |}{res}          2        0.41       57.93
+{txt}                  Peshawar {c |}{res}         74       15.04       72.97
+{txt}                    Pishin {c |}{res}          1        0.20       73.17
+{txt}                    Poonch {c |}{res}          2        0.41       73.58
+{txt}                    Quetta {c |}{res}         37        7.52       81.10
+{txt}                Rawalpindi {c |}{res}         18        3.66       84.76
+{txt}                  Sargodha {c |}{res}          3        0.61       85.37
+{txt}               Sehwan Town {c |}{res}          1        0.20       85.57
+{txt}       Shabqadar-Charsadda {c |}{res}          1        0.20       85.77
+{txt}                   Shangla {c |}{res}          2        0.41       86.18
+{txt}                 Shikarpur {c |}{res}          3        0.61       86.79
+{txt}                   Sialkot {c |}{res}          1        0.20       86.99
+{txt}          South Waziristan {c |}{res}         11        2.24       89.23
+{txt}                 Sudhanoti {c |}{res}          1        0.20       89.43
+{txt}                    Sukkur {c |}{res}          1        0.20       89.63
+{txt}                     Swabi {c |}{res}          3        0.61       90.24
+{txt}                      Swat {c |}{res}         30        6.10       96.34
+{txt}                    Taftan {c |}{res}          1        0.20       96.54
+{txt} Tangi, Charsadda District {c |}{res}          1        0.20       96.75
+{txt}                      Tank {c |}{res}          8        1.63       98.37
+{txt}                    Taunsa {c |}{res}          1        0.20       98.58
+{txt}              Tirah Valley {c |}{res}          1        0.20       98.78
+{txt}                   Totalai {c |}{res}          1        0.20       98.98
+{txt}                 Upper Dir {c |}{res}          2        0.41       99.39
+{txt}                     Wagah {c |}{res}          1        0.20       99.59
+{txt}                      Zhob {c |}{res}          2        0.41      100.00
+{txt}{hline 27}{c +}{hline 35}
+                     Total {c |}{res}        492      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. cls
+
+. destring noofsuicideblasts injuredmax longitude, replace force float
+{txt}noofsuicideblasts: contains nonnumeric characters; {res}replaced {txt}as {res}byte
+{txt}(80 missing values generated)
+{res}{txt}injuredmax: contains nonnumeric characters; {res}replaced {txt}as {res}int
+{txt}(32 missing values generated)
+{res}{txt}longitude: all characters numeric; {res}replaced {txt}as {res}float
+{txt}(3 missing values generated)
+{res}
+{com}. destring noofsuicideblasts injuredmax longitude, replace force float
+{txt}noofsuicideblasts already numeric; no {res}replace
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. destring noofsuicideblasts injuredmax longitude, replace force float
+{txt}noofsuicideblasts already numeric; no {res}replace
+{txt}injuredmax already numeric; no {res}replace
+{txt}longitude already numeric; no {res}replace
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. split date, generate(-) limit(2)
+{err}- invalid name
+{txt}{search r(7), local:r(7);}
+
+{com}. split date, generate(-) limit(2)
+{err}- invalid name
+{txt}{search r(7), local:r(7);}
+
+{com}. split date, parse(-) limit(2)
+{res}variables created as string: 
+{txt}{col 1}date1{col 8}date2
+
+{com}. drop date2
+
+. drop date1
+
+. split date, parse(-) limit(3)
+{res}variables created as string: 
+{txt}{col 1}date1{col 8}date2{col 15}date3
+
+{com}. split date, parse(-) limit(3)
+{err}cannot generate new variables using stub date
+{txt}{search r(110), local:r(110);}
+
+{com}. drop date1-date3
+
+. split date, parse(-) limit(4)
+{res}variables created as string: 
+{txt}{col 1}date1{col 8}date2{col 15}date3{col 22}date4
+
+{com}. sort date4
+
+. {txt}*(1 variable, 16 observations pasted into data editor)
+{com}
+. {txt}*(1 variable, 450 observations pasted into data editor)
+{com}
+. split date2, limit(2)
+{res}variables created as string: 
+{txt}{col 1}date21{col 9}date22
+
+{com}. {txt}*(2 variables, 466 observations pasted into data editor)
+{com}
+. drop date21 date22
+
+. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. rename date3 Day
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. rename date4 Year
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. generate int Month = 1 if Day = "January"
+{err}type mismatch
+{txt}{search r(109), local:r(109);}
+
+{com}. generate int Month = 1 if Day = "January"
+{err}type mismatch
+{txt}{search r(109), local:r(109);}
+
+{com}. generate int Month = 1 if date2 = "January"
+{err}type mismatch
+{txt}{search r(109), local:r(109);}
+
+{com}. generate int Month = 1 if Day == "January"
+{txt}(492 missing values generated)
+
+{com}. sort Month
+
+. sort date2
+
+. generate int Month = 1 if Day == January
+{err}variable {bf}Month{sf} already defined
+{txt}{search r(110), local:r(110);}
+
+{com}. drop Month
+
+. generate int Month = 1 if Day == January
+{err}January not found
+{txt}{search r(111), local:r(111);}
+
+{com}. generate int Month = 1 if Day == "January"
+{txt}(492 missing values generated)
+
+{com}. drop Month
+
+. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. generate int Month
+{err}=exp required
+{txt}{search r(100), local:r(100);}
+
+end of do-file
+
+{search r(100), local:r(100);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. generate int Month if date == "January"
+{err}=exp required
+{txt}{search r(100), local:r(100);}
+
+end of do-file
+
+{search r(100), local:r(100);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. generate int Month=1 if date == "January"
+{txt}(492 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. drop Month
+
+. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. generate int Month=1 if date2 == "January"
+{txt}(457 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace Month = 2 if date2 == "February"
+{txt}(48 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace Month = 2 if date2 == "February"
+{txt}(0 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace Month = 3 if date2 == "March"
+{txt}(41 real changes made)
+
+{com}. replace Month = 4 if date2 == "April"
+{txt}(28 real changes made)
+
+{com}. replace Month = 5 if date2 == "May"
+{txt}(39 real changes made)
+
+{com}. replace Month = 6 if date2 == "June"
+{txt}(35 real changes made)
+
+{com}. replace Month = 7 if date2 == "July"
+{txt}(38 real changes made)
+
+{com}. replace Month = 8 if date2 == "August"
+{txt}(31 real changes made)
+
+{com}. replace Month = 9 if date2 == "September"
+{txt}(33 real changes made)
+
+{com}. replace Month = 10 if date2 == "October"
+{txt}(37 real changes made)
+
+{com}. replace Month = 11 if date2 == "November"
+{txt}(51 real changes made)
+
+{com}. replace Month = 12 if date2 == "Decemeber"
+{txt}(0 real changes made)
+
+{com}. replace Month = 1 if date2 == "Jan"
+{txt}(3 real changes made)
+
+{com}. replace Month = 2 if date2 == "Feb"
+{txt}(8 real changes made)
+
+{com}. replace Month = 3 if date2 == "Mar"
+{txt}(2 real changes made)
+
+{com}. replace Month = 4 if date2 == "Apr"
+{txt}(2 real changes made)
+
+{com}. replace Month = 5 if date2 == "May"
+{txt}(0 real changes made)
+
+{com}. replace Month = 6 if date2 == "Jun"
+{txt}(0 real changes made)
+
+{com}. replace Month = 7 if date2 == "Jul"
+{txt}(0 real changes made)
+
+{com}. replace Month = 8 if date2 == "Aug"
+{txt}(3 real changes made)
+
+{com}. replace Month = 9 if date2 == "Sep"
+{txt}(5 real changes made)
+
+{com}. replace Month = 10 if date2 == "Oct"
+{txt}(4 real changes made)
+
+{com}. replace Month = 11 if date2 == "Nov"
+{txt}(2 real changes made)
+
+{com}. replace Month = 12 if date2 == "Dec"
+{txt}(1 real change made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. replace Month = 12 if date2 == "December"
+{txt}(46 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. destring Day Year, replace force int
+{err}option {bf:int} not allowed
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. destring Day Year, replace force integer
+{err}option {bf:integer} not allowed
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. destring Day Year, replace force float
+{txt}Day: all characters numeric; {res}replaced {txt}as {res}byte
+{txt}Year: all characters numeric; {res}replaced {txt}as {res}int
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. gen DateFixed = mdy(Moth,Day,Year)
+{err}Moth not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. gen DateFixed = mdy(Month,Day,Year)
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. format DateFixed %d 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD2838_000000.tmp"
+{txt}
+{com}. format DateFixed %dM_d,_CY 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. odbc list
+
+{txt}Data Source Name                   Driver
+{hline 79}
+{stata odbc query "Excel Files", dialog(complete):Excel Files}                        Microsoft Excel Driver (*.xls, *.xlsx, *.xl
+{stata odbc query "MS Access Database", dialog(complete):MS Access Database}                 Microsoft Access Driver (*.mdb, *.accdb)
+{stata odbc query "Visio Database Samples", dialog(complete):Visio Database Samples}             Microsoft Access Driver (*.mdb, *.accdb)
+{stata odbc query "FileMaker Pro - CREW GL", dialog(complete):FileMaker Pro - CREW GL}            FileMaker ODBC
+{stata odbc query "dBASE Files", dialog(complete):dBASE Files}                        Microsoft Access dBASE Driver (*.dbf, *.ndx
+{stata odbc query "FileMaker Pro -  FY16 Budget", dialog(complete):FileMaker Pro -  FY16 Budget}       FileMaker ODBC
+{stata odbc query "FileMaker Pro -  CREW GL Detail ", dialog(complete):FileMaker Pro -  CREW GL Detail }   FileMaker ODBC
+{stata odbc query "Sample Amazon Redshift DSN", dialog(complete):Sample Amazon Redshift DSN}         Amazon Redshift (x64)
+{hline 79}
+
+{com}. odbc list
+
+{txt}Data Source Name                   Driver
+{hline 79}
+{stata odbc query "Excel Files", dialog(complete):Excel Files}                        Microsoft Excel Driver (*.xls, *.xlsx, *.xl
+{stata odbc query "MS Access Database", dialog(complete):MS Access Database}                 Microsoft Access Driver (*.mdb, *.accdb)
+{stata odbc query "Visio Database Samples", dialog(complete):Visio Database Samples}             Microsoft Access Driver (*.mdb, *.accdb)
+{stata odbc query "FileMaker Pro - CREW GL", dialog(complete):FileMaker Pro - CREW GL}            FileMaker ODBC
+{stata odbc query "dBASE Files", dialog(complete):dBASE Files}                        Microsoft Access dBASE Driver (*.dbf, *.ndx
+{stata odbc query "FileMaker Pro -  FY16 Budget", dialog(complete):FileMaker Pro -  FY16 Budget}       FileMaker ODBC
+{stata odbc query "FileMaker Pro -  CREW GL Detail ", dialog(complete):FileMaker Pro -  CREW GL Detail }   FileMaker ODBC
+{stata odbc query "Sample Amazon Redshift DSN", dialog(complete):Sample Amazon Redshift DSN}         Amazon Redshift (x64)
+{hline 79}
+
+{com}. save "D:\Documents\GitHub\ra-boot-camp-stata\Pakistan_SA_Corrected.dta"
+{txt}file D:\Documents\GitHub\ra-boot-camp-stata\Pakistan_SA_Corrected.dta saved
+
+{com}. exit
