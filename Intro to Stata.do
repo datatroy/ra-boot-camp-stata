@@ -104,8 +104,20 @@ gen DateFixed = mdy(Month,Day,Year)
 format DateFixed %d 
 format DateFixed %dM_d,_CY 
 
+// ODBC
+odbc list
 
+odbc query "MariaDB", dialog(complete)
 
+odbc desc "yt_2017_06_validated"
 
+odbc load, table("yt_2017_06_validated") clear noquote
+
+odbc load, exec("SELECT * FROM YT_2017_06_validated LIMIT 5") clear dsn("MariaDB")
+
+odbc load, exec("SELECT id, tpep_pickup_datetime, tpep_dropoff_datetime FROM YT_2017_06_Validated") clear dsn("MariaDB")
+
+use Yellow_Tripdata_2017_06.dta, clear 
+odbc insert, table("YT") dsn("MariaDB") create
 
 

@@ -1,0 +1,294 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Documents\GitHub\ra-boot-camp-stata\Stats_with_Stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Jul 2018, 04:23:45
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. odbc list
+
+{txt}Data Source Name                   Driver
+{hline 79}
+{stata odbc query "Excel Files", dialog(complete):Excel Files}                        Microsoft Excel Driver (*.xls, *.xlsx, *.xl
+{stata odbc query "MS Access Database", dialog(complete):MS Access Database}                 Microsoft Access Driver (*.mdb, *.accdb)
+{stata odbc query "Visio Database Samples", dialog(complete):Visio Database Samples}             Microsoft Access Driver (*.mdb, *.accdb)
+{stata odbc query "FileMaker Pro - CREW GL", dialog(complete):FileMaker Pro - CREW GL}            FileMaker ODBC
+{stata odbc query "dBASE Files", dialog(complete):dBASE Files}                        Microsoft Access dBASE Driver (*.dbf, *.ndx
+{stata odbc query "MariaDB", dialog(complete):MariaDB}                            MySQL ODBC 5.3 Unicode Driver
+{stata odbc query "FileMaker Pro -  FY16 Budget", dialog(complete):FileMaker Pro -  FY16 Budget}       FileMaker ODBC
+{stata odbc query "FileMaker Pro -  CREW GL Detail ", dialog(complete):FileMaker Pro -  CREW GL Detail }   FileMaker ODBC
+{stata odbc query "Sample Amazon Redshift DSN", dialog(complete):Sample Amazon Redshift DSN}         Amazon Redshift (x64)
+{hline 79}
+
+{com}. 
+. odbc query "MariaDB", dialog(complete)
+
+{txt}DataSource: {result:MariaDB}
+Path      : {result:test}
+{hline 79}
+{stata odbc desc "yt_2017_0607":yt_2017_0607}
+{stata odbc desc "yt_2017_06_length":yt_2017_06_length}
+{stata odbc desc "yt_2017_06_validated":yt_2017_06_validated}
+{stata odbc desc "yt_validated_master":yt_validated_master}
+{hline 79}
+
+{com}. 
+. odbc desc "yt_validated_master"
+
+{txt}DataSource: {result:MariaDB} ({stata odbc query "MariaDB":query})
+Table:      {result:yt_validated_master} ({stata odbc load, table("yt_validated_master"):load})
+{hline 79}
+Variable Name                               Variable Type
+{hline 79}
+{result:VendorID}                                    integer
+{result:tpep_pickup_datetime}                        double
+{result:tpep_dropoff_datetime}                       double
+{result:passenger_count}                             integer
+{result:trip_distance}                               double
+{result:RatecodeID}                                  integer
+{result:store_and_fwd_flag}                          varchar
+{result:PULocationID}                                integer
+{result:DOLocationID}                                integer
+{result:payment_type}                                integer
+{result:fare_amount}                                 double
+{result:extra}                                       double
+{result:mta_tax}                                     double
+{result:tip_amount}                                  double
+{result:tolls_amount}                                double
+{result:improvement_surcharge}                       double
+{result:total_amount}                                double
+{result:mins}                                        float
+{hline 79}
+
+{com}. odbc load, table("yt_validated_master") clear noquote
+{txt}
+{com}. sample 5
+{txt}(17,215,277 observations deleted)
+
+{com}. regress tip_amount mins
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   906,067
+{txt}{hline 13}{c +}{hline 34}   F(1, 906065)    = {res}  8704.34
+{txt}       Model {c |} {res} 59631.6156         1  59631.6156   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 6207262.01   906,065  6.85079107   {txt}R-squared       ={res}    0.0095
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0095
+{txt}       Total {c |} {res} 6266893.62   906,066  6.91659727   {txt}Root MSE        =   {res} 2.6174
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  tip_amount{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}mins {c |}{col 14}{res}{space 2} .0044512{col 26}{space 2} .0000477{col 37}{space 1}   93.30{col 46}{space 3}0.000{col 54}{space 4} .0043577{col 67}{space 3} .0045447
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.758543{col 26}{space 2} .0028651{col 37}{space 1}  613.79{col 46}{space 3}0.000{col 54}{space 4} 1.752928{col 67}{space 3} 1.764158
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. twoway scatter tip_amount mins || lfit tip_amount mins
+{res}{txt}
+{com}. 
+. list mins if mins<0
+{txt}
+{com}. drop if mins<0
+{txt}(0 observations deleted)
+
+{com}. regress tip_amount mins
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   906,067
+{txt}{hline 13}{c +}{hline 34}   F(1, 906065)    = {res}  8704.34
+{txt}       Model {c |} {res} 59631.6156         1  59631.6156   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 6207262.01   906,065  6.85079107   {txt}R-squared       ={res}    0.0095
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0095
+{txt}       Total {c |} {res} 6266893.62   906,066  6.91659727   {txt}Root MSE        =   {res} 2.6174
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  tip_amount{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}mins {c |}{col 14}{res}{space 2} .0044512{col 26}{space 2} .0000477{col 37}{space 1}   93.30{col 46}{space 3}0.000{col 54}{space 4} .0043577{col 67}{space 3} .0045447
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.758543{col 26}{space 2} .0028651{col 37}{space 1}  613.79{col 46}{space 3}0.000{col 54}{space 4} 1.752928{col 67}{space 3} 1.764158
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. twoway scatter tip_amount mins || lfit tip_amount mins
+{res}{txt}
+{com}. predict residuals, residuals
+{txt}
+{com}. predict fittedvalues, xb
+{txt}
+{com}. rvfplot, yline(0)
+{res}{txt}
+{com}. estat hettest
+
+{txt}Breusch-Pagan / Cook-Weisberg test for heteroskedasticity 
+         Ho: Constant variance
+{p 9 20}Variables: fitted values of tip_amount
+
+{col 10}chi2({res}1{txt}){col 23}={res}173881.29
+{txt}{col 10}Prob > chi2{col 23}={res}   0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. regress tip_amount mins trip_distance
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   906,067
+{txt}{hline 13}{c +}{hline 34}   F(2, 906064)    > {res} 99999.00
+{txt}       Model {c |} {res} 1798306.14         2  899153.068   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 4468587.49   906,064  4.93186738   {txt}R-squared       ={res}    0.2870
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2870
+{txt}       Total {c |} {res} 6266893.62   906,066  6.91659727   {txt}Root MSE        =   {res} 2.2208
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   tip_amount{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      t{col 47}   P>|t|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}mins {c |}{col 15}{res}{space 2} .0002892{col 27}{space 2} .0000411{col 38}{space 1}    7.04{col 47}{space 3}0.000{col 55}{space 4} .0002087{col 68}{space 3} .0003697
+{txt}trip_distance {c |}{col 15}{res}{space 2} .3606843{col 27}{space 2} .0006075{col 38}{space 1}  593.75{col 47}{space 3}0.000{col 55}{space 4} .3594936{col 68}{space 3} .3618749
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2} .7426652{col 27}{space 2} .0029727{col 38}{space 1}  249.83{col 47}{space 3}0.000{col 55}{space 4} .7368389{col 68}{space 3} .7484915
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. twoway scatter tip_amount mins trip_distance || lfit tip_amount mins trip_distance
+{error}{p 0 8}too many variables specified: tip_amount mins trip_distance
+{txt}{search r(103), local:r(103);}
+
+end of do-file
+
+{search r(103), local:r(103);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. correlate mins trip_distance
+{txt}(obs=906,067)
+
+             {c |}     mins trip_d~e
+{hline 13}{c +}{hline 18}
+        mins {c |}{res}   1.0000
+{txt}trip_dista~e {c |}{res}   0.1706   1.0000
+
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. vif
+
+{txt}    Variable {c |}       VIF       1/VIF  
+{hline 13}{c +}{hline 22}
+{space 8}mins {c |} {res}     1.03    0.970888
+{txt}trip_dista~e {c |} {res}     1.03    0.970888
+{txt}{hline 13}{c +}{hline 22}
+    Mean VIF {c |} {res}     1.03
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. estat ovtest
+
+{txt}Ramsey RESET test using powers of the fitted values of tip_amount
+       Ho:  model has no omitted variables
+              F(3, 906061) = {res}  8889.95
+                  {txt}Prob > F =      {res}0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. predict r, residuals
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. kdensity r, normal
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. testparm mins
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}mins = 0{p_end}
+
+{txt}       F(  1,906064) ={res}   49.56
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. test (trip_distance))
+{bf}{err}({sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. testparm mins
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}mins = 0{p_end}
+
+{txt}       F(  1,906064) ={res}   49.56
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. test (trip_distance)
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}trip_distance = 0{p_end}
+
+{txt}       F(  1,906064) ={res} 3.5e+05
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. test (mins trip_distance) 
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}mins = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} trip_distance = 0{p_end}
+
+{txt}       F(  2,906064) ={res} 1.8e+05
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. test (mins=trip_distance)
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}mins - trip_distance = 0{p_end}
+
+{txt}       F(  1,906064) ={res} 3.4e+05
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\Troy\AppData\Local\Temp\STD100c_000000.tmp"
+{txt}
+{com}. acprplot min
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear
